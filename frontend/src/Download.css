@@ -1,0 +1,53 @@
+body {
+    background-image: url('vecteezy_laser-background-futuristic-horizon-background-technology_6878140.jpg');
+    background-size: cover;        /* Scales the image to cover the entire viewport */
+    background-position: center;    /* Centers the background image */
+    background-repeat: no-repeat;   /* Prevents the image from repeating */
+    background-attachment: fixed;   /* Keeps the image fixed during scrolling */
+ }
+
+ .container {
+   margin-top: 10%;
+   padding: 20px;
+   text-align: center;
+}
+
+.container h1 {
+   margin-bottom: 20px;
+   font-size: 24px;
+   color: #333;
+}
+
+.input-field {
+   width: 300px;
+   padding: 10px;
+   margin-bottom: 10px;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+}
+
+.download-button {
+   padding: 10px 20px;
+   background-color: #28a745;
+   color: white;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+   font-size: 16px;
+}
+
+.download-button:hover {
+   background-color: #218838;
+}
+
+.download-button:disabled {
+   background-color: none;
+   border: none;
+}
+
+.download-button.downloading {
+   background-color: none;
+   color: transparent;
+   border: none;
+   pointer-events: none;
+}
