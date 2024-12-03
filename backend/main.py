@@ -1,6 +1,4 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_bcrypt import Bcrypt
 from flask_cors import CORS
 from sqlalchemy import inspect
 from ytDownloader import yt_blueprint
@@ -24,6 +22,7 @@ main_app.register_blueprint(core_app, url_prefix='/')
 
 main_app.register_blueprint(yt_blueprint, url_prefix='/yt')
 
+
 # Initialize Database
 def initialize_database():
     with main_app.app_context():
@@ -38,6 +37,7 @@ def initialize_database():
         except OperationalError:
             print("Database connection failed."
                   " Ensure the database server is running.")
+
 
 initialize_database()
 

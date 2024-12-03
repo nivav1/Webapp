@@ -1,8 +1,8 @@
 from flask import Blueprint, request, jsonify
-from sqlalchemy.exc import OperationalError
 from extensions import db, bcrypt  # Import shared extensions
 
 app = Blueprint('app', __name__)
+
 
 # User model
 class User(db.Model):

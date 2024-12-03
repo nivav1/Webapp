@@ -1,10 +1,10 @@
 from flask import Blueprint, request, jsonify, send_file
 from pytubefix import YouTube
-from pytubefix.cli import on_progress
 from pathlib import Path
 import os
 
 yt_blueprint = Blueprint('ytDownloader', __name__)
+
 
 @yt_blueprint.route('/download', methods=['POST'])
 def download():
