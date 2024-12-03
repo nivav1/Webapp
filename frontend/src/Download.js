@@ -27,12 +27,12 @@ export default function Download() {
             if (response.ok) {
                 const blob = await response.blob();
                 const contentDisposition = response.headers.get('Content-Disposition');
-                let filename = 'video.mp4';  // Fallback filename
+                let filename = 'video.mp4';
 
                 if (contentDisposition) {
                     const filenameMatch = contentDisposition.split('filename=')[1];
                     if (filenameMatch) {
-                        filename = filenameMatch.replace(/"/g, ''); // Extract filename from header
+                        filename = filenameMatch.replace(/"/g, '');
                     }
                 }
                 const url = window.URL.createObjectURL(blob);
@@ -52,7 +52,7 @@ export default function Download() {
         } catch (error) {
             alert(`Something went wrong: ${error.message}`);
         } finally {
-            setIsDownloading(false); // Revert button text back to "Download"
+            setIsDownloading(false);
         }
     };
 

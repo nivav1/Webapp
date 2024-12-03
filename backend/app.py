@@ -1,10 +1,9 @@
 from flask import Blueprint, request, jsonify
-from extensions import db, bcrypt  # Import shared extensions
+from extensions import db, bcrypt 
 
 app = Blueprint('app', __name__)
 
 
-# User model
 class User(db.Model):
     __tablename__ = 'users'
 

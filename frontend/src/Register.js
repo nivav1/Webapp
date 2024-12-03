@@ -13,7 +13,6 @@ export default function Register() {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    // Basic form validation
     if (password !== confirmPassword) {
       setError('Passwords do not match');
       return;
@@ -23,13 +22,11 @@ export default function Register() {
         return;
       }
 
-    // Clear error message
     setError('');
     registerUser();
 
   };
 
-  // Update your register function
   const registerUser = async () => {
     try {
         const response = await fetch(`http://localhost:5000/register`, {
@@ -54,12 +51,6 @@ export default function Register() {
         console.error('Error:', error);
         alert('Error: ' + error.message);
     }
-};
-
-
-const handleSubmit = (event) => {
-  event.preventDefault(); // Prevent the default form submission
-  registerUser(); // Call the register function
 };
 
   return (
@@ -92,7 +83,7 @@ const handleSubmit = (event) => {
                 e.preventDefault();
                 setError('Please enter a valid email address');
               }}
-              onInput={() => setError('')} // Clear error when user starts typing again
+              onInput={() => setError('')}
               required
             />
           </div>

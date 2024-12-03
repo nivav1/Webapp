@@ -31,7 +31,7 @@ def download():
             download_name=f"{title}.mp4",
             mimetype='video/mp4'
         )
-        os.remove(downloaded_file)  # Clean up
+        os.remove(downloaded_file)
         return response
     except Exception as e:
         return jsonify({"error": str(e)}), 500

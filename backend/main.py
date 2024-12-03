@@ -8,22 +8,18 @@ from sqlalchemy.exc import OperationalError
 
 main_app = Flask(__name__)
 
-# App-Level Configurations
 main_app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://niv:niv123@db:5432/mydb'
 main_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-# Initialize Extensions
 db.init_app(main_app)
 bcrypt.init_app(main_app)
 CORS(main_app, expose_headers=["Content-Disposition",])
 
-# Register Blueprints
 main_app.register_blueprint(core_app, url_prefix='/')
 
 main_app.register_blueprint(yt_blueprint, url_prefix='/yt')
 
 
-# Initialize Database
 def initialize_database():
     with main_app.app_context():
         try:
