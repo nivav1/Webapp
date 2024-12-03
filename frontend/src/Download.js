@@ -68,10 +68,10 @@ export default function Download() {
             />
             <br />
             <button
-                onClick={downloadVideo}
-                className="download-button"
-                disabled={isDownloading} // Disable the button while downloading
-            >
+                 onClick={downloadVideo}
+                 className={`download-button ${isDownloading ? 'downloading' : ''}`}
+                 disabled={isDownloading}
+             >
                 {isDownloading ? 'Video Downloading...' : 'Download'}
             </button>
         </div>

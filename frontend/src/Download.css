@@ -46,7 +46,7 @@ body {
 }
 
 .download-button.downloading {
-   background-color: none;
+   background-color: transparent;
    color: transparent;
    border: none;
    pointer-events: none;
