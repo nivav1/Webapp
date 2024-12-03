@@ -29,7 +29,7 @@ jobs:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-        
+
   
   nodetest:
 
@@ -82,10 +82,25 @@ jobs:
 
       - name: Build and push backend image
         run: |
-          docker build -t nivav123/backend:${{ github.ref_name }} backend/
-          docker push nivav123/backend:${{ github.ref_name }}
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            # Use the tag name for the version
+            IMAGE_TAG="${GITHUB_REF#refs/tags/}"
+          else
+            # Use "latest" for the main branch
+            IMAGE_TAG="latest"
+          fi
+          docker build -t nivav123/frontend:$IMAGE_TAG .
+          docker push nivav123/frontend:$IMAGE_TAG
+
 
       - name: Build and push frontend image
         run: |
-          docker build -t nivav123/frontend:${{ github.ref_name }} frontend/
-          docker push nivav123/frontend:${{ github.ref_name }}
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            # Use the tag name for the version
+            IMAGE_TAG="${GITHUB_REF#refs/tags/}"
+          else
+            # Use "latest" for the main branch
+            IMAGE_TAG="latest"
+          fi
+          docker build -t nivav123/backend:$IMAGE_TAG .
+          docker push nivav123/backend:$IMAGE_TAG
