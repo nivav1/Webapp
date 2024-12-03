@@ -2,8 +2,8 @@ name: Test and publish the application
 
 on:
   push:
-    tags: [ 'v*' ]
     branches: [ "main" ]
+    tags: [ 'v*' ]
   pull_request:
     branches: [ "main" ]
 jobs:
