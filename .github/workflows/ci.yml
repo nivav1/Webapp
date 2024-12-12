@@ -76,7 +76,7 @@ jobs:
           else
             IMAGE_TAG="latest"
           fi
-          docker build -t nivav123/frontend:$IMAGE_TAG backend/
+          docker build -t nivav123/frontend:$IMAGE_TAG frontend/
           docker push nivav123/frontend:$IMAGE_TAG
 
       - name: Build and push frontend image
@@ -86,5 +86,5 @@ jobs:
           else
             IMAGE_TAG="latest"
           fi
-          docker build -t nivav123/backend:$IMAGE_TAG frontend/
+          docker build -t nivav123/backend:$IMAGE_TAG backend/
           docker push nivav123/backend:$IMAGE_TAG
