@@ -9,10 +9,7 @@ import os
 
 main_app = Flask(__name__)
 
-db_username = os.getenv('DB_USERNAME')
-db_password = os.getenv('DB_PASSWORD')
-
-main_app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://{db_username}:{db_password}@db-service:5432/mydb'
+main_app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://niv:niv123@db-service:5432/mydb'
 main_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(main_app)
