@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, current_app
 from main import db, bcrypt
 
 app = Blueprint('app', __name__)
