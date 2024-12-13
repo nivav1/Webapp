@@ -46,7 +46,7 @@ export default function Register() {
 
         const data = await response.json();
         console.log(data.message);
-        navigate('/Welcome');
+        navigate('/download');
     } catch (error) {
         console.error('Error:', error);
         alert('Error: ' + error.message);

@@ -18,7 +18,7 @@ export default function Download() {
         setIsDownloading(true);
 
         try {
-            const response = await fetch(`http://localhost:5000/yt/download`, {
+            const response = await fetch(`http://simple.ytdownload.com/api/yt/download`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ youtube_get: videoUrl }),
