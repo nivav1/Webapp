@@ -19,9 +19,9 @@ db.init_app(main_app)
 bcrypt.init_app(main_app)
 CORS(main_app, expose_headers=["Content-Disposition",])
 
-main_app.register_blueprint(core_app, url_prefix='/')
+main_app.register_blueprint(core_app, url_prefix='/api')
 
-main_app.register_blueprint(yt_blueprint, url_prefix='/yt')
+main_app.register_blueprint(yt_blueprint, url_prefix='/api/yt')
 
 
 def initialize_database():
