@@ -2,10 +2,9 @@ from flask import Flask
 from flask_cors import CORS
 from sqlalchemy import inspect
 from ytDownloader import yt_blueprint
-from app import app as core_app
+from app import app as register_bp
 from extensions import db, bcrypt
 from sqlalchemy.exc import OperationalError
-import os
 
 main_app = Flask(__name__)
 
@@ -16,7 +15,7 @@ db.init_app(main_app)
 bcrypt.init_app(main_app)
 CORS(main_app, expose_headers=["Content-Disposition",])
 
-main_app.register_blueprint(core_app, url_prefix='/api')
+main_app.register_blueprint(register_bp, url_prefix='/api')
 
 main_app.register_blueprint(yt_blueprint, url_prefix='/api/yt')
 

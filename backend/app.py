@@ -1,8 +1,7 @@
 from flask import Blueprint, request, jsonify
-from extensions import db, bcrypt 
+from main import db, bcrypt
 
 app = Blueprint('app', __name__)
-
 
 class User(db.Model):
     __tablename__ = 'users'
@@ -35,5 +34,5 @@ def register():
         return jsonify({"message": "User registered successfully!"}), 201
     except Exception as e:
         db.session.rollback()
-        app.logger.error("Error during registration: %s", e)
+        current_app.logger.error("Error during registration: %s", e)
         return jsonify({"error": str(e)}), 500
