@@ -7,10 +7,11 @@ from opentelemetry.sdk.trace.export import BatchSpanProcessor
 from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
 from opentelemetry.sdk.metrics import MeterProvider
 from opentelemetry.exporter.otlp.proto.grpc.metric_exporter import OTLPMetricExporter
-from opentelemetry.instumentation.sqlalchemy import SQLAlchemyInstrumentor
-from opentelemetry.exporter.otlp.proto.grpc.logs_exporter import OTLPLogExporter
-from opentelemetry.sdk.logs.export import BatchLogProcessor
-from opentelemetry.sdk.logs import LoggingHandler, LoggerProvider
+from opentelemetry.sdk.metrics.export import PeriodicExportingMetricReader
+from opentelemetry.instrumentation.sqlalchemy import SQLAlchemyInstrumentor
+from opentelemetry.exporter.otlp.proto.grpc._log_exporter import OTLPLogExporter
+from opentelemetry.sdk._logs.export import BatchLogRecordProcessor
+from opentelemetry.sdk._logs import LoggingHandler, LoggerProvider
 
 # Configure tracing
 resource = Resource(attributes={"service.name": "simple.ytdownload.com"})
@@ -20,12 +21,13 @@ trace.get_tracer_provider().add_span_processor(BatchSpanProcessor(trace_exporter
 
 # Configure metrics
 metric_exporter = OTLPMetricExporter(endpoint = "http://otel-collector.monitoring.svc.cluster.local:4317")
-metrics.set_meter_provider(MeterProvider(resource=resource, metric_exporters=[metric_exporter]))
+metric_reader = PeriodicExportingMetricReader(metric_exporter)
+metrics.set_meter_provider(MeterProvider(resource=resource, metric_readers=[metric_reader]))
 
 # Logging Configuration
 logger_provider = LoggerProvider(resource=resource)
 log_exporter = OTLPLogExporter(endpoint="http://otel-collector.monitoring.svc.cluster.local:4317")
-logger_provider.add_log_processor(BatchLogProcessor(log_exporter))
+logger_provider.add_log_record_processor(BatchLogRecordProcessor(log_exporter))
 
 # Set up logging with OpenTelemetry
 logging.basicConfig(level=logging.INFO)
