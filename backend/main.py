@@ -5,8 +5,11 @@ from ytDownloader import yt_blueprint
 from app import app as register_bp
 from extensions import db, bcrypt
 from sqlalchemy.exc import OperationalError
+from otel_config import setup_otel
 
 main_app = Flask(__name__)
+
+setup_otel(main_app)
 
 main_app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://niv:niv123@db-service:5432/mydb'
 main_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
